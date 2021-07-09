@@ -1,4 +1,4 @@
-##Tasks
+## Tasks
 
 ```scala
 val (v1, v2) = parallel(e1, e2)
@@ -44,9 +44,9 @@ def parallel[A, B](cA: => A, cB: => B): (A, B) = {
 }
 ```
 
-##Parallel sorting
+## Parallel sorting
 
-####Merge sort
+#### Merge sort
 
 ```scala
 def parMergeSort(xs: Array[Int], maxDepth: Int): Unit {
@@ -84,9 +84,9 @@ def parMergeSort(xs: Array[Int], maxDepth: Int): Unit {
 }
 ```
 
-##Data Operations and Parallel Mapping, Reduce, Scan
+## Data Operations and Parallel Mapping, Reduce, Scan
 
-####Functional programming and collections
+#### Functional programming and collections
 
 **map**
 
@@ -108,16 +108,16 @@ def parMergeSort(xs: Array[Int], maxDepth: Int): Unit {
 
 -  List(1, 3, 8).scan(100)((s, x) => s + x) == List(100, 101, 104, 112)
 
-####Associative operation
+#### Associative operation
 Operation $f: (A, A) => A$ is associative $\xLeftrightarrow{} f(x, f(y, z)) == f(f(x, y), z)$
 or
 $(x \otimes y)\otimes(z \otimes w) = (x \otimes (y \otimes z)) \otimes w = ((x \otimes y) \otimes z) \otimes w$
 
-####Commutative operation
+#### Commutative operation
 
 Operation $f: (A, A) => A$ is associative $\xLeftrightarrow{} f(x, y) == f(y, x)$
 
-####Parallel map of an array producing an array
+#### Parallel map of an array producing an array
 
 ```scala
 def mapASegPar[A, B](inp: Array[A], left: Int, right: Int, f: A => B, out: Array[B]): Unit = {
@@ -131,7 +131,7 @@ def mapASegPar[A, B](inp: Array[A], left: Int, right: Int, f: A => B, out: Array
 }
 ```
 
-####Parallel map on immutable trees
+#### Parallel map on immutable trees
 
 ```scala
 sealed abstract class Tree[A] { val size: Int}
@@ -164,7 +164,7 @@ def mapTreePar[A: Manifest, B: Manifest](t: Tree[A], f: A=> B): Tree[B] = {
 }
 ```
 
-####Parallel reduce of a tree
+#### Parallel reduce of a tree
 
 ```scala
 def reduce[A](t: Tree[A], f: (A, A) => A): A = {
@@ -176,7 +176,7 @@ def reduce[A](t: Tree[A], f: (A, A) => A): A = {
 }
 ```
 
-####Parallel Scan of a tree
+#### Parallel Scan of a tree
 
 ```scala
 sealed abstract class TreeRes[A] { val res: A}
@@ -226,7 +226,7 @@ def prepend[A](x: A, t: Tree[A]): Tree[A] = {
 }
 ```
 
-####Parallel Scan of a tree with arrays as nodes
+#### Parallel Scan of a tree with arrays as nodes
 
 ```scala
 sealed abstract class TreeResA[A] { val res: A}
@@ -283,9 +283,9 @@ def scanLeft[A](inp: Array[A], a0: A, f: (A, A) => A, out: Array[A]): Unit = {
 }
 ```
 
-##Data-Parallel operation
+## Data-Parallel operation
 
-####The aggregate Operation
+#### The aggregate Operation
 
 ```scala
 def aggregate[B](z: B)(f: (B, A) => B, g: (B, B) => B): B
