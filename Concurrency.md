@@ -1,4 +1,4 @@
-##Threads
+## Threads
 
 The thread notation starts a new _thread_ – a concurrent execution.
 
@@ -21,7 +21,7 @@ def thread(body: => Unit): Thread =
 
 The call t.join() lets the calling thread wait until thread t has terminated.
 
-##Synchronization
+## Synchronization
 
 ```scala
 object GetUID extends Monitor:
@@ -91,16 +91,16 @@ class OnePlaceBuffer[Elem] extends Monitor:
     }
 ```
 
-####Memory models
+#### Memory models
 
-######The Sequential Consistency Model
+###### The Sequential Consistency Model
 Consider all the reads and writes to program variables. If the result
 of the execution is the same as if the read and write operations
 were executed in some sequential order, and the operations of each
 individual processor appear in the program order, then the model
 is sequentially consistent.
 
-######The Java Memory Model
+###### The Java Memory Model
 The Java Memory Model (JMM) defines a “happens-before” relationship
 as follows.
 
@@ -117,7 +117,7 @@ as follows.
 -  Transitivity. If A happens before B and B happens-before C, then A
    happens-before C.
 
-####Volatile Variables
+#### Volatile Variables
 
 There’s a cheaper solution than using synchronized – we can use a _volatile field_.
 
@@ -130,7 +130,7 @@ Making a variable @volatile has several effects.
 -  Fifth, before a volatile write, values cached in registers must be written back to main memory.
 -  Sixth, after a volatile read, values cached in registers must be re-read from the main memory.
 
-##Executors
+## Executors
 Thread creation is expensive.
 Therefore, one often multiplexes threads to perform different tasks.
 The JVM offers abstractions for that: ThreadPools and Executors.
@@ -149,7 +149,7 @@ import scala.concurrent._
     Thread.sleep(500)
 ```
 
-####Atomic variables
+#### Atomic variables
 An atomic variable is a memory location that supports linearizable
 operations.
 A linearizable operation is one that appears instantaneously with the rest of the system. We also say the operation is performed atomically.
@@ -193,7 +193,7 @@ class AtomicLong {
     else getUniqueId()
 ```
 
-######Lazy Values
+###### Lazy Values
 
 ```scala
 private var x_evaluating = false
@@ -213,7 +213,7 @@ def x: T =
     x_cached
 ```
 
-######Concurrent Queue implentation
+###### Concurrent Queue implentation
 Sequential:
 
 ```scala
@@ -274,8 +274,8 @@ class ConcQueue[T]:
     else remove()
 ```
 
-#Futures
-###From Continuation Passing Style to Future
+# Futures
+### From Continuation Passing Style to Future
 
 ```scala
 def program(a: A, k: B => Unit): Unit
@@ -295,7 +295,7 @@ trait Future[+T]:
     def onComplete(k: Try[T] => Unit): Unit
 ```
 
-####Simplified API of Future
+#### Simplified API of Future
 
 ```scala
 trait Future[+A]:
