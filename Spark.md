@@ -1,6 +1,6 @@
-#Spark
+# Spark
 
-###Shared memory data parallelism
+### Shared memory data parallelism
 
 Shared memory data parallelism:
 
@@ -8,7 +8,7 @@ Shared memory data parallelism:
 -  Workers/threads independently operate on the data shards in parallel.
 -  Combine when done (if necessary)
 
-###Distributed memory data parallelism
+### Distributed memory data parallelism
 
 Distributed data parallelism:
 
@@ -22,7 +22,7 @@ Distributed data parallelism:
 
 **Distributed case**: Data-parallel programming model. Data partitioned between machines, network in between, operated upon in parallel.
 
-####RDDs
+#### RDDs
 
 Spark implements a distributed data parallel model called _Resilient Distributed Datasets_ (RDDs)
 
@@ -43,7 +43,7 @@ RDDs can be created in two ways:
 -  From a _SparkContext_ (or _SparkSession_) object.
    The _SparkContext_ object (renamed _SparkSession_) can be thought of as your handle to the Spark cluster. It represents the connection between the Spark cluster and your running a pplication. It defines a handful of methods which can be used to create and populate a new RDD - parallelize: convert a local Scala collection to an RDD - textFile: read a text file from HD FS or a local file system and return an RDD of String
 
-###Transformations and actions on Scala collection
+### Transformations and actions on Scala collection
 Recall transformers and accessors from Scala sequential and parallel
 collections.
 
@@ -61,7 +61,7 @@ _Examples: reduce, fold, aggregate_
 reduce(op: (A, A)=> A): A
 ```
 
-###Transformations and actions on Spark
+### Transformations and actions on Spark
 
 Similarly, Spark defines **transformations** and **actions** on RDDs.
 
@@ -101,12 +101,12 @@ They are _eager_, their result is immediately computed.
 -  _**foreach(f: T => Unit): Unit**_
    Apply function to each element in the RDD.
 
-####Caching and Persistence
+#### Caching and Persistence
 By default, RDDs are recompted each time you run an action on them. This can be expensive if you need to use dataset more than once.
 
 Spark allows you to control what is cached in memory by calling _persist()_ or _cache()_
 
-###Pair RDDs
+### Pair RDDs
 **Transformations**
 
 -  groupByKey
@@ -120,7 +120,7 @@ Spark allows you to control what is cached in memory by calling _persist()_ or _
 
 -  countByKey
 
-####Joins
+#### Joins
 
 Joins are another sort of transformation on Pair RDDs. They're used to combine multiple datasets They are one of the most commonly-used operations on Pair RDDs!
 
@@ -203,7 +203,7 @@ customersWithlocationDataAndOptionalAbos =
 
 ```
 
-##Shuffling
+## Shuffling
 
 Think again what happens when you have to do a groupBy or a groupByKey.
 Remember our data is distributed! Did you notice anything odd?
@@ -217,7 +217,7 @@ pairs.groupByKey()
 
 We typically have to move data from one node to another to beb _grouped with_ its key. Doing this is called **_shuffling_**.
 
-#####Grouping and Reducing
+##### Grouping and Reducing
 Goal: calculate how many trips, and how much money was spent by each individual customer over the course of the month.
 
 ```scala
@@ -231,7 +231,7 @@ val purchasesPerMonth =
 
 **_By reducing the dataset first, the amount of data sent over the network during the shuffle is greatly redduced._**
 
-####Partitioning
+#### Partitioning
 
 Grouping all values of key-value pairs with the same key requires collecting all key-value pairs with the same key on the same machine
 
