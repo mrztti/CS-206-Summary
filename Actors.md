@@ -1,4 +1,4 @@
-##Why Actors?
+## Why Actors?
 CPUs are not getting faster anymore, they are getting wider:
 
 -  multiple execution cores within one chip, sharing memory
@@ -15,7 +15,7 @@ Programs running on the computer must feed these cores:
 -  blocking is bad for CPU utilization
 -  synchronous communication couples sender and receiver
 
-#The Actor Model
+# The Actor Model
 The Actor Model represents objects and their interactions, resembling
 human organizations and built upon the laws of physics.
 An Actor
@@ -54,7 +54,7 @@ trait ActorContext {
 }
 ```
 
-####Actor Encapsulation
+#### Actor Encapsulation
 No direct access is possible to the actor behavior.
 Only messages can be sent to known addresses (ActorRef):
 
@@ -76,7 +76,7 @@ An actor is effectively single-threaded:
 
 This has the benefits of synchronized methods, but blocking is replaced by enqueueing a message.
 
-######Example counter
+###### Example counter
 
 ```scala
 class Counter extends Actor {
@@ -108,7 +108,7 @@ class Counter extends Actor {
 }
 ```
 
-######Example bank account
+###### Example bank account
 
 ```scala
 object BankAccount {
